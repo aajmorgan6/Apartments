@@ -4,4 +4,4 @@ from apartment.models import Apartment
 class ApartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Apartment
-        fields = ['__all__']
+        fields = ['id', 'name', 'sqr_ft', 'price']

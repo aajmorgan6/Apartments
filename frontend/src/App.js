@@ -1,10 +1,11 @@
 import './App.css';
 import { Table, Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
+import AddModal from './Modals/AddModal';
 
 function App() {
   const [data, setData] = useState({});
-
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const callAPI = async () => {
     const res = await fetch('http://127.0.0.1:8000/all/');
@@ -16,6 +17,9 @@ function App() {
   useEffect(() => {
     callAPI();
   }, [])
+
+  const setShowAddFalse = () => setShowAddModal(false);
+  const setShowAddTrue = () => setShowAddModal(true);
 
 
   return (
@@ -40,7 +44,10 @@ function App() {
         </Table>
       </div>
       <div>
-        <Button className='text-right btn btn-primary' variant='contained'>Add Apartment</Button>
+        <Button className='text-right btn btn-primary' variant='contained' onClick={setShowAddTrue}>Add Apartment</Button>
+      </div>
+      <div className='container center'>
+        <AddModal show={showAddModal} setShow={setShowAddFalse} setData={setData} />
       </div>
     </div>
   );
