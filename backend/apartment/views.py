@@ -40,3 +40,12 @@ def apartment_detail(request, pk):
         apartment.delete()
         data = ApartmentSerializer(Apartment.objects.all(), many=True).data
         return JsonResponse(data=data, safe=False)
+
+    elif request.method == "PUT":
+        data = JSONParser().parse(request)
+        serializer = ApartmentSerializer(apartment, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            data = ApartmentSerializer(Apartment.objects.all(), many=True).data
+            return JsonResponse(data, status=201, safe=False)
+        return JsonResponse(serializer.errors, status=400)

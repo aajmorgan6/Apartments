@@ -54,7 +54,7 @@ export default function AddModal({ show, setShow, setData }) {
                                 </Form.Control>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Price</Form.Label>
+                            <Form.Label>Price per Month</Form.Label>
                             <Form.Control
                                 type='number'
                                 value={price}
